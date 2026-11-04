@@ -1,0 +1,99 @@
+[04-Nov-26 14:30] Mukhayyo Rakhimova: <!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aqlli Kasb Tanlagich | SmartPath</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+        body { background-color: var(--light); color: var(--dark); line-height: 1.6; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #e2e8f0; padding-bottom: 20px; }
+        header h1 { color: var(--primary); font-size: 28px; margin-bottom: 10px; }
+        header p { color: #64748b; }
+        .section { margin-bottom: 25px; }
+        .section h3 { margin-bottom: 15px; color: var(--dark); font-size: 18px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+        .card-checkbox { display: none; }
+        .card-label { display: block; background: #f1f5f9; border: 2px solid #e2e8f0; padding: 15px; border-radius: 10px; text-align: center; cursor: pointer; transition: all 0.3s ease; font-weight: 500; }
+        .card-checkbox:checked + .card-label { background: #eff6ff; border-color: var(--primary); color: var(--primary); transform: translateY(-2px); }
+        .btn { display: block; width: 100%; background: var(--primary); color: white; border: none; padding: 15px; font-size: 18px; font-weight: bold; border-radius: 10px; cursor: pointer; transition: background 0.2s; margin-top: 30px; }
+        .btn:hover { background: var(--primary-dark); }
+        #results { margin-top: 30px; display: none; border-top: 2px solid #e2e8f0; padding-top: 25px; }
+        #results h2 { color: var(--secondary); text-align: center; margin-bottom: 20px; }
+        .job-card { background: #f8fafc; border-left: 5px solid var(--primary); padding: 20px; border-radius: 0 10px 10px 0; margin-bottom: 15px; }
+        .job-card h4 { color: var(--dark); font-size: 18px; margin-bottom: 5px; }
+        .job-tag { display: inline-block; background: #e2e8f0; padding: 2px 8px; border-radius: 4px; font-size: 12px; margin-right: 5px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>🤖 Aqlli Kasb Tanlagich</h1>
+        <p>Qiziqishlaringiz va yoqtirgan fanlaringizni belgilang, biz sizga mos kelajak kasbini topamiz!</p>
+    </header>
+    <div class="section">
+        <h3>1. Sevimli fanlaringizni tanlang (Kamida 1 ta):</h3>
+        <div class="grid">
+            <div><input type="checkbox" id="math" class="card-checkbox" value="matematika"><label for="math" class="card-label">Matematika</label></div>
+            <div><input type="checkbox" id="phys" class="card-checkbox" value="fizika"><label for="phys" class="card-label">Fizika</label></div>
+            <div><input type="checkbox" id="lang" class="card-checkbox" value="til"><label for="lang" class="card-label">O'zbek / Ingliz tili</label></div>
+            <div><input type="checkbox" id="bio" class="card-checkbox" value="biologiya"><label for="bio" class="card-label">Biologiya / Kimyo</label></div>
+        </div>
+    </div>
+    <div class="section">
+        <h3>2. Nimalarga ko'proq qiziqasiz?</h3>
+        <div class="grid">
+            <div><input type="checkbox" id="code" class="card-checkbox" value="kodlash"><label for="code" class="card-label">Komp'yuter va Kodlash</label></div>
+            <div><input type="checkbox" id="create" class="card-checkbox" value="ijod"><label for="create" class="card-label">Rasm chizish va Ijod</label></div>
+[04-Nov-26 14:30] Mukhayyo Rakhimova: <div><input type="checkbox" id="people" class="card-checkbox" value="odamlar"><label for="people" class="card-label">Odamlarga yordam berish</label></div>
+            <div><input type="checkbox" id="business" class="card-checkbox" value="biznes"><label for="business" class="card-label">Biznes va Pul topish</label></div>
+        </div>
+    </div>
+    <button class="btn" onclick="tahlilQilish()">Kasbni Aniqlash 🚀</button>
+    <div id="results">
+        <h2>Sizga tavsiya etilgan TOP-3 kasb:</h2>
+        <div id="jobsList"></div>
+    </div>
+</div>
+<script>
+    const kasbData = [
+        { nomi: "Dasturchi (Software Engineer)", fanlar: ["matematika"], qiziqishlar: ["kodlash"], tavsif: "Komp'yuter dasturlari, veb-saytlar va mobil ilovalar kodini yozuvchi mutaxassis.", teglari: ["Yuqori daromad", "Mantiqiy fikrlash"] },
+        { nomi: "Ma'lumotlar tahlilchisi (Data Analyst)", fanlar: ["matematika"], qiziqishlar: ["biznes", "kodlash"], tavsif: "Katta hajmdagi ma'lumotlarni tahlil qilib, biznes uchun to'g'ri qarorlar chiqarishga yordam beruvchi mutaxassis.", teglari: ["Matematika", "Kelajak kasbi"] },
+        { nomi: "UI/UX Dizayner", fanlar: ["til"], qiziqishlar: ["ijod", "kodlash"], tavsif: "Saytlar va mobil ilovalarning ko'rinishi hamda foydalanuvchiga qulay dizaynini yaratuvchi ijodkor.", teglari: ["Ijodkorlik", "Texnologiya"] },
+        { nomi: "Shifokor / Bioinjener", fanlar: ["biologiya"], qiziqishlar: ["odamlar"], tavsif: "Inson salomatligini saqlash va tibbiy texnologiyalarni rivojlantirish bilan shug'ullanuvchi soha egasi.", teglari: ["Ijtimoiy yordam", "Ilm-fan"] },
+        { nomi: "Raqamli Marketolog (Digital Marketer)", fanlar: ["til"], qiziqishlar: ["biznes", "ijod"], tavsif: "Internet va ijtimoiy tarmoqlar orqali mahsulotlarni sotish va brendlarni rivojlantirish mutaxassisi.", teglari: ["Biznes", "Kommunikatsiya"] },
+        { nomi: "Muhandis (HVAC / Robototexnik)", fanlar: ["fizika", "matematika"], qiziqishlar: ["kodlash", "ijod"], tavsif: "Murakkab tizimlar, robotlar yoki iqlim nazorati uskunalarini loyihalashtiruvchi va tuzatuvchi shaxs.", teglari: ["Texnika", "Amaliy ish"] }
+    ];
+    function tahlilQilish() {
+        const fanlar = Array.from(document.querySelectorAll('.section:nth-of-type(1) .card-checkbox:checked')).map(cb => cb.value);
+        const qiziqishlar = Array.from(document.querySelectorAll('.section:nth-of-type(2) .card-checkbox:checked')).map(cb => cb.value);
+        if (fanlar.length === 0 && qiziqishlar.length === 0) { alert("Iltimos, kamida bitta fan yoki qiziqishni tanlang!"); return; }
+        let mosKasblar = [];
+        kasbData.forEach(kasb => {
+            let ball = 0;
+            kasb.fanlar.forEach(f => { if(fanlar.includes(f)) ball += 2; });
+            kasb.qiziqishlar.forEach(q => { if(qiziqishlar.includes(q)) ball += 3; });
+            if (ball > 0) mosKasblar.push({ ...kasb, ball: ball });
+        });
+        mosKasblar.sort((a, b) => b.ball - a.ball);
+        const topKasblar = mosKasblar.slice(0, 3);
+        const jobsList = document.getElementById('jobsList');
+        jobsList.innerHTML = '';
+        topKasblar.forEach(kasb => {
+            let teglariHTML = kasb.teglari.map(tag => <span class="job-tag">#${tag}</span>).join('');
+            jobsList.innerHTML += <div class="job-card"><h4>${kasb.nomi}</h4><div>${teglariHTML}</div><p>${kasb.tavsif}</p></div>;
+        });
+        document.getElementById('results').style.display = 'block';
+        document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+</body>
+</html>
