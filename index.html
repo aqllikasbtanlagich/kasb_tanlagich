@@ -1,4 +1,4 @@
-[04-Nov-26 14:49] Mukhayyo Rakhimova: <!DOCTYPE html>
+[04-Nov-26 14:57] Mukhayyo Rakhimova: <!DOCTYPE html>
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
@@ -28,18 +28,18 @@
     
     <h3>1. Sevimli fanlaringizni tanlang:</h3>
     <div class="grid">
-        <input type="checkbox" id="f1" class="btn-check" value="matem"><label for="f1" class="btn-label">Matematika</label>
-        <input type="checkbox" id="f2" class="btn-check" value="fizika"><label for="f2" class="btn-label">Fizika</label>
-        <input type="checkbox" id="f3" class="btn-check" value="til"><label for="f3" class="btn-label">O'zbek / Ingliz tili</label>
-        <input type="checkbox" id="f4" class="btn-check" value="bio"><label for="f4" class="btn-label">Biologiya / Kimyo</label>
+        <input type="checkbox" id="f1" class="btn-check fan-check" value="matem"><label for="f1" class="btn-label">Matematika</label>
+        <input type="checkbox" id="f2" class="btn-check fan-check" value="fizika"><label for="f2" class="btn-label">Fizika</label>
+        <input type="checkbox" id="f3" class="btn-check fan-check" value="til"><label for="f3" class="btn-label">O'zbek / Ingliz tili</label>
+        <input type="checkbox" id="f4" class="btn-check fan-check" value="bio"><label for="f4" class="btn-label">Biologiya / Kimyo</label>
     </div>
 
     <h3>2. Nimalarga ko'proq qiziqasiz?</h3>
     <div class="grid">
-        <input type="checkbox" id="q1" class="btn-check" value="kod"><label for="q1" class="btn-label">Kodlash va AT</label>
-        <input type="checkbox" id="q2" class="btn-check" value="ijod"><label for="q2" class="btn-label">Ijod va Dizayn</label>
-        <input type="checkbox" id="q3" class="btn-check" value="odam"><label for="q3" class="btn-label">Insonlarga yordam</label>
-        <input type="checkbox" id="q4" class="btn-check" value="pul"><label for="q4" class="btn-label">Biznes va Pul</label>
+        <input type="checkbox" id="q1" class="btn-check qiz-check" value="kod"><label for="q1" class="btn-label">Kodlash va AT</label>
+        <input type="checkbox" id="q2" class="btn-check qiz-check" value="ijod"><label for="q2" class="btn-label">Ijod va Dizayn</label>
+        <input type="checkbox" id="q3" class="btn-check qiz-check" value="odam"><label for="q3" class="btn-label">Insonlarga yordam</label>
+        <input type="checkbox" id="q4" class="btn-check qiz-check" value="pul"><label for="q4" class="btn-label">Biznes va Pul</label>
     </div>
 
     <button class="main-btn" onclick="checkJobs()">Kasbni Aniqlash 🚀</button>
@@ -58,9 +58,16 @@
         { n: "Raqamli Marketolog", f: ["til"], q: ["pul", "ijod"], d: "Internet va ijtimoiy tarmoqlar orqali mahsulotlarni brend darajasiga ko'taruvchi mutaxassis." },
         { n: "Shifokor / Bioinjener", f: ["bio"], q: ["odam"], d: "Insonlar salomatligini tiklash va tibbiy texnologiyalar bilan ishlovchi soha vakili." }
     ];
-[04-Nov-26 14:49] Mukhayyo Rakhimova: function checkJobs() {
-        const selectedF = Array.from(document.querySelectorAll('.box div:nth-of-type(1) .btn-check:checked')).map(c => c.value);
-        const selectedQ = Array.from(document.querySelectorAll('.box div:nth-of-type(2) .btn-check:checked')).map(c => c.value);
+[04-Nov-26 14:57] Mukhayyo Rakhimova: function checkJobs() {
+        // Mutlaqo xatosiz ishlaydigan yangi oddiy tanlov tizimi
+        const checkedFans = document.querySelectorAll('.fan-check:checked');
+        const checkedQizs = document.querySelectorAll('.qiz-check:checked');
+
+        const selectedF = [];
+        checkedFans.forEach(function(el) { selectedF.push(el.value); });
+
+        const selectedQ = [];
+        checkedQizs.forEach(function(el) { selectedQ.push(el.value); });
 
         if (selectedF.length === 0 && selectedQ.length === 0) {
             alert("Iltimos, kamida bitta variantni belgilang!");
@@ -68,14 +75,14 @@
         }
 
         let results = [];
-        data.forEach(k => {
+        data.forEach(function(k) {
             let score = 0;
-            k.f.forEach(f => { if(selectedF.includes(f)) score += 2; });
-            k.q.forEach(q => { if(selectedQ.includes(q)) score += 3; });
-            if (score > 0) results.push({ ...k, score: score });
+            k.f.forEach(function(f) { if(selectedF.includes(f)) score += 2; });
+            k.q.forEach(function(q) { if(selectedQ.includes(q)) score += 3; });
+            if (score > 0) results.push({ n: k.n, d: k.d, score: score });
         });
 
-        results.sort((a, b) => b.score - a.score);
+        results.sort(function(a, b) { return b.score - a.score; });
         const top = results.slice(0, 3);
 
         const list = document.getElementById('list');
@@ -84,8 +91,8 @@
         if(top.length === 0) {
             list.innerHTML = '<div class="job"><h4>SMM Mutaxassis</h4><p>Har qanday yo\'nalishga mos keluvchi zamonaviy kasb.</p></div>';
         } else {
-            top.forEach(k => {
-                list.innerHTML += <div class="job"><h4>${k.n}</h4><p>${k.d}</p></div>;
+            top.forEach(function(k) {
+                list.innerHTML += '<div class="job"><h4>' + k.n + '</h4><p>' + k.d + '</p></div>';
             });
         }
 
