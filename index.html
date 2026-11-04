@@ -1,103 +1,238 @@
- <!DOCTYPE html>
+[04-Nov-26 15:32] Mukhayyo Rakhimova: <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aqlli Kasb Tanlagich</title>
-    <style>
-        body { font-family: sans-serif; background: #f8fafc; padding: 20px; color: #1e293b; }
-        .box { max-width: 600px; margin: 0 auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        h1 { color: #2563eb; text-align: center; font-size: 24px; margin-bottom: 20px; }
-        h3 { font-size: 16px; margin: 15px 0 10px 0; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .btn-check { display: none; }
-        .btn-label { display: block; background: #f1f5f9; border: 2px solid #e2e8f0; padding: 12px; border-radius: 8px; text-align: center; cursor: pointer; font-weight: 500; transition: 0.2s; }
-        .btn-check:checked + .btn-label { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
-        .main-btn { display: block; width: 100%; background: #2563eb; color: white; border: none; padding: 14px; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; margin-top: 25px; }
-        .main-btn:hover { background: #1d4ed8; }
-        #res { margin-top: 25px; display: none; border-top: 2px solid #e2e8f0; padding-top: 20px; }
-        .job { background: #f8fafc; border-left: 4px solid #10b981; padding: 15px; border-radius: 4px; margin-bottom: 10px; }
-        .job h4 { margin: 0 0 5px 0; color: #1e293b; }
-        .job p { margin: 0; font-size: 14px; color: #64748b; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aqlli Kasb Tanlagich</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    padding: 20px;
+    color: #1e293b;
+}
+.box {
+    max-width: 650px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px #0001;
+}
+h1 {
+    color: #2563eb;
+    text-align: center;
+    font-size: 25px;
+}
+h3 { font-size: 16px; margin-top: 22px; }
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+.btn-check { display: none; }
+
+.btn-label {
+    display: block;
+    background: #f1f5f9;
+    border: 2px solid #e2e8f0;
+    padding: 13px;
+    border-radius: 9px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn-check:checked + .btn-label {
+    background: #dbeafe;
+    border-color: #2563eb;
+    color: #2563eb;
+    font-weight: bold;
+}
+.main-btn {
+    width: 100%;
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 9px;
+    cursor: pointer;
+    margin-top: 25px;
+}
+.main-btn:hover { background: #1d4ed8; }
+
+#res {
+    margin-top: 25px;
+    display: none;
+    border-top: 2px solid #e2e8f0;
+    padding-top: 20px;
+}
+.job {
+    background: #f8fafc;
+    border-left: 4px solid #10b981;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+.job h4 { margin: 0 0 8px; }
+.job p { margin: 0; font-size: 14px; color: #64748b; }
+
+@media(max-width:450px) {
+    .grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
+
 <body>
 
 <div class="box">
-    <h1>🤖 Aqlli Kasb Tanlagich</h1>
-    
-    <h3>1. Sevimli fanlaringizni tanlang:</h3>
-    <div class="grid">
-        <input type="checkbox" id="f1" class="btn-check fan-check" value="matem"><label for="f1" class="btn-label">Matematika</label>
-        <input type="checkbox" id="f2" class="btn-check fan-check" value="fizika"><label for="f2" class="btn-label">Fizika</label>
-        <input type="checkbox" id="f3" class="btn-check fan-check" value="til"><label for="f3" class="btn-label">O'zbek / Ingliz tili</label>
-        <input type="checkbox" id="f4" class="btn-check fan-check" value="bio"><label for="f4" class="btn-label">Biologiya / Kimyo</label>
-    </div>
 
-    <h3>2. Nimalarga ko'proq qiziqasiz?</h3>
-    <div class="grid">
-        <input type="checkbox" id="q1" class="btn-check qiz-check" value="kod"><label for="q1" class="btn-label">Kodlash va AT</label>
-        <input type="checkbox" id="q2" class="btn-check qiz-check" value="ijod"><label for="q2" class="btn-label">Ijod va Dizayn</label>
-        <input type="checkbox" id="q3" class="btn-check qiz-check" value="odam"><label for="q3" class="btn-label">Insonlarga yordam</label>
-        <input type="checkbox" id="q4" class="btn-check qiz-check" value="pul"><label for="q4" class="btn-label">Biznes va Pul</label>
-    </div>
+<h1>🤖 Aqlli Kasb Tanlagich</h1>
 
-    <button class="main-btn" onclick="checkJobs()">Kasbni Aniqlash 🚀</button>
+<h3>1. Sevimli fanlaringizni tanlang:</h3>
 
-    <div id="res">
-        <h3 style="color: #10b981; text-align: center;">Sizga mos keladigan kasblar:</h3>
-        <div id="list"></div>
-    </div>
+<div class="grid" id="fanlar">
+<input type="checkbox" id="f1" class="btn-check" value="matem">
+<label for="f1" class="btn-label">Matematika</label>
+
+<input type="checkbox" id="f2" class="btn-check" value="fizika">
+<label for="f2" class="btn-label">Fizika</label>
+
+<input type="checkbox" id="f3" class="btn-check" value="til">
+<label for="f3" class="btn-label">O'zbek / Ingliz tili</label>
+
+<input type="checkbox" id="f4" class="btn-check" value="bio">
+<label for="f4" class="btn-label">Biologiya / Kimyo</label>
+</div>
+
+<h3>2. Nimalarga ko'proq qiziqasiz?</h3>
+
+<div class="grid" id="qiziqishlar">
+<input type="checkbox" id="q1" class="btn-check" value="kod">
+<label for="q1" class="btn-label">Kodlash va AT</label>
+
+<input type="checkbox" id="q2" class="btn-check" value="ijod">
+<label for="q2" class="btn-label">Ijod va Dizayn</label>
+
+<input type="checkbox" id="q3" class="btn-check" value="odam">
+<label for="q3" class="btn-label">Insonlarga yordam</label>
+
+<input type="checkbox" id="q4" class="btn-check" value="pul">
+<label for="q4" class="btn-label">Biznes va Pul</label>
+</div>
+
+<button class="main-btn" onclick="checkJobs()">
+Kasbni Aniqlash 🚀
+</button>
+
+<div id="res">
+<h3 style="color:#10b981;text-align:center">
+🎯 Sizga mos keladigan kasblar:
+</h3>
+<div id="list"></div>
+</div>
+
 </div>
 
 <script>
-    const data = [
-        { n: "Dasturchi (Software Engineer)", f: ["matem"], q: ["kod"], d: "Komp'yuter dasturlari va mobil ilovalar kodini yozuvchi yuqori daromadli mutaxassis." },
-        { n: "UI/UX Dizayner", f: ["til"], q: ["ijod"], d: "Veb-saytlar va dasturlarning chiroyli hamda qulay ko'rinishini loyiholovchi ijodkor." },
-        { n: "Ma'lumotlar tahlilchisi (Data Analyst)", f: ["matem", "fizika"], q: ["kod", "pul"], d: "Katta ma'lumotlarni tahlil qilib, biznes rivoji uchun strategiya tuzuvchi mutaxassis." },
-        { n: "Raqamli Marketolog", f: ["til"], q: ["pul", "ijod"], d: "Internet va ijtimoiy tarmoqlar orqali mahsulotlarni brend darajasiga ko'taruvchi mutaxassis." },
-        { n: "Shifokor / Bioinjener", f: ["bio"], q: ["odam"], d: "Insonlar salomatligini tiklash va tibbiy texnologiyalar bilan ishlovchi soha vakili." }
-    ];
-[04-Nov-26 14:57] Mukhayyo Rakhimova: function checkJobs() {
-        // Mutlaqo xatosiz ishlaydigan yangi oddiy tanlov tizimi
-        const checkedFans = document.querySelectorAll('.fan-check:checked');
-        const checkedQizs = document.querySelectorAll('.qiz-check:checked');
+const data = [
+{
+n: "Dasturchi (Software Engineer)",
+f: ["matem", "fizika"],
+q: ["kod"],
+d: "Kompyuter dasturlari va mobil ilovalar yaratuvchi mutaxassis."
+},
+{
+n: "UI/UX Dizayner",
+f: ["til"],
+q: ["ijod"],
+d: "Veb-sayt va ilovalarning qulay hamda chiroyli dizaynini yaratuvchi mutaxassis."
+},
+{
+n: "Ma'lumotlar tahlilchisi",
+f: ["matem", "fizika"],
+q: ["kod", "pul"],
+d: "Ma'lumotlarni tahlil qilib, muhim qarorlar qabul qilishga yordam beruvchi mutaxassis."
+},
+{
+n: "Raqamli marketolog",
+f: ["til"],
+q: ["pul", "ijod"],
+d: "Internet va ijtimoiy tarmoqlarda mahsulotlarni targ'ib qiluvchi mutaxassis."
+},
+{
+n: "Shifokor / Bioinjener",
+f: ["bio"],
+q: ["odam"],
+d: "Inson salomatligi va tibbiy texnologiyalar bilan ishlovchi mutaxassis."
+}
+];
 
-        const selectedF = [];
-        checkedFans.forEach(function(el) { selectedF.push(el.value); });
+function checkJobs() {
 
-        const selectedQ = [];
-        checkedQizs.forEach(function(el) { selectedQ.push(el.value); });
+const selectedF = Array.from(
+document.querySelectorAll('#fanlar input:checked')
+).map(c => c.value);
 
-        if (selectedF.length === 0 && selectedQ.length === 0) {
-            alert("Iltimos, kamida bitta variantni belgilang!");
-            return;
-        }
+const selectedQ = Array.from(
+document.querySelectorAll('#qiziqishlar input:checked')
+).map(c => c.value);
+[04-Nov-26 15:32] Mukhayyo Rakhimova: if (selectedF.length === 0 || selectedQ.length === 0) {
+alert("Iltimos, kamida bitta fan va bitta qiziqishni tanlang!");
+return;
+}
 
-        let results = [];
-        data.forEach(function(k) {
-            let score = 0;
-            k.f.forEach(function(f) { if(selectedF.includes(f)) score += 2; });
-            k.q.forEach(function(q) { if(selectedQ.includes(q)) score += 3; });
-            if (score > 0) results.push({ n: k.n, d: k.d, score: score });
-        });
+let results = [];
 
-        results.sort(function(a, b) { return b.score - a.score; });
-        const top = results.slice(0, 3);
+data.forEach(k => {
+let score = 0;
 
-        const list = document.getElementById('list');
-        list.innerHTML = '';
+k.f.forEach(f => {
+if (selectedF.includes(f)) score += 2;
+});
 
-        if(top.length === 0) {
-            list.innerHTML = '<div class="job"><h4>SMM Mutaxassis</h4><p>Har qanday yo\'nalishga mos keluvchi zamonaviy kasb.</p></div>';
-        } else {
-            top.forEach(function(k) {
-                list.innerHTML += '<div class="job"><h4>' + k.n + '</h4><p>' + k.d + '</p></div>';
-            });
-        }
+k.q.forEach(q => {
+if (selectedQ.includes(q)) score += 3;
+});
 
-        document.getElementById('res').style.display = 'block';
-    }
+if (score > 0) {
+results.push({...k, score: score});
+}
+});
+
+results.sort((a, b) => b.score - a.score);
+
+const top = results.slice(0, 3);
+const list = document.getElementById("list");
+
+list.innerHTML = "";
+
+if (top.length === 0) {
+list.innerHTML = `
+<div class="job">
+<h4>🌟 Yangi imkoniyatlar</h4>
+<p>Tanlovingizga mos kasblarni aniqlash uchun boshqa fan va qiziqishlarni ham sinab ko'ring.</p>
+</div>`;
+} else {
+
+top.forEach(k => {
+list.innerHTML += `
+<div class="job">
+<h4>⭐ ${k.n}</h4>
+<p>${k.d}</p>
+<p><b>Moslik balli: ${k.score}</b></p>
+</div>`;
+});
+
+}
+
+document.getElementById("res").style.display = "block";
+
+}
 </script>
+
 </body>
 </html>
