@@ -78,7 +78,7 @@ h3 { font-size: 16px; margin-top: 22px; }
     margin-bottom: 12px;
 }
 .job h4 { margin: 0 0 8px; }
-.job p { margin: 0; font-size: 14px; color: #64748b; }
+.job p { margin: 0 0 7px; font-size: 14px; color: #64748b; }
 
 @media(max-width:450px) {
     .grid { grid-template-columns: 1fr; }
@@ -180,27 +180,28 @@ document.querySelectorAll('#fanlar input:checked')
 const selectedQ = Array.from(
 document.querySelectorAll('#qiziqishlar input:checked')
 ).map(c => c.value);
-
-alert("Iltimos, kamida bitta fan va bitta qiziqishni tanlang!");
-return;
+[05-Nov-26 11:16] Mukhayyo Rakhimova: // Tanlovlar tekshiriladi
+if (selectedF.length === 0 || selectedQ.length === 0) {
+    alert("Iltimos, kamida bitta fan va bitta qiziqishni tanlang!");
+    return;
 }
 
 let results = [];
 
 data.forEach(k => {
-let score = 0;
+    let score = 0;
 
-k.f.forEach(f => {
-if (selectedF.includes(f)) score += 2;
-});
+    k.f.forEach(f => {
+        if (selectedF.includes(f)) score += 2;
+    });
 
-k.q.forEach(q => {
-if (selectedQ.includes(q)) score += 3;
-});
+    k.q.forEach(q => {
+        if (selectedQ.includes(q)) score += 3;
+    });
 
-if (score > 0) {
-results.push({...k, score: score});
-}
+    if (score > 0) {
+        results.push({...k, score: score});
+    }
 });
 
 results.sort((a, b) => b.score - a.score);
@@ -211,21 +212,21 @@ const list = document.getElementById("list");
 list.innerHTML = "";
 
 if (top.length === 0) {
-list.innerHTML = `
-<div class="job">
-<h4>🌟 Yangi imkoniyatlar</h4>
-<p>Tanlovingizga mos kasblarni aniqlash uchun boshqa fan va qiziqishlarni ham sinab ko'ring.</p>
-</div>`;
+    list.innerHTML = `
+    <div class="job">
+        <h4>🌟 Yangi imkoniyatlar</h4>
+        <p>Tanlovingizga mos kasblarni aniqlash uchun boshqa fan va qiziqishlarni ham sinab ko'ring.</p>
+    </div>`;
 } else {
 
-top.forEach(k => {
-list.innerHTML += `
-<div class="job">
-<h4>⭐ ${k.n}</h4>
-<p>${k.d}</p>
-<p><b>Moslik balli: ${k.score}</b></p>
-</div>`;
-});
+    top.forEach(k => {
+        list.innerHTML += `
+        <div class="job">
+            <h4>⭐ ${k.n}</h4>
+            <p>${k.d}</p>
+            <p><b>Moslik balli: ${k.score}</b></p>
+        </div>`;
+    });
 
 }
 
